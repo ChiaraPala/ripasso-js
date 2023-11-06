@@ -6,14 +6,23 @@
 
   <button>Vai</button>
   <p id="demo"></p>
-<script>
- let prova = setTimeout(function(){
-  alert('ciao sono in timeout');
- }, 5000);
 
- btn.addEventListener('click', () => {
-  clearTimeout(prova);
- })
+<script>
+
+  const btn = document.querySelector('button');
+
+  btn.addEventListener('click', ()=> {
+    clearInterval(createClock);
+  })
+  
+function displayTime(){
+  let date = new Date();
+  let time = date.toLocaleDateString();
+  document.getElementById('demo').textContent = time;
+}
+
+const createClock = setInterval(displayTime, 1000);
+
 
 </script>
 </body>
