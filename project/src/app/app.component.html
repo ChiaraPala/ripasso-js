@@ -4,6 +4,18 @@
 </head>
 <body>
 <script>
+  let requestURL = './classe.json';
+  let request = new XMLHttpRequest();
+  request.open('GET', requestURL);
+  request.responseType = 'json';
+  request.send();
+
+  request.onload = function(){
+    const classe = request.response;
+    console.log(classe.insegnanti[1]);
+
+  }
+
   class Persona{
   constructor(nome, cognome, eta, genere, interessi){
     this.nome = nome;
@@ -12,7 +24,7 @@
     this.genere = genere;
     this.interessi = interessi;
   }
-    saluta (){
+    saluta  (){
       console.log('Ciao sono ${this.nome}');
     };
   };
