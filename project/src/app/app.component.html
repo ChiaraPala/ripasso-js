@@ -5,15 +5,11 @@
 <body>
 
   <button>Vai</button>
+  <p id="demo"></p>
 <script>
- fetch('classe.json').then(function (response){
-    return response.json();
-  }).then(function(json){
-    classe = json;
-    console.log('Dati: ', classe);
-  }).catch(function(err){
-    console.log('Fetch problem: '+ err.message);
-  });
+ let prova = setTimeout(function(){
+  alert('ciao sono in timeout');
+ }, 5000);
 
 </script>
 </body>
