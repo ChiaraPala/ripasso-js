@@ -3,56 +3,30 @@
 
 </head>
 <body>
+
+  <button>Vai</button>
 <script>
-  let requestURL = './classe.json';
-  let request = new XMLHttpRequest();
-  request.open('GET', requestURL);
-  request.responseType = 'json';
-  request.send();
+  function loadAsset(url, type, callback){
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url);
+    xhr.responseType = type;
 
-  request.onload = function(){
-    const classe = request.response;
-    console.log(classe.insegnanti[1]);
-
-  }
-
-  class Persona{
-  constructor(nome, cognome, eta, genere, interessi){
-    this.nome = nome;
-    this.cognome = cognome;
-    this.eta = eta;
-    this.genere = genere;
-    this.interessi = interessi;
-  }
-    saluta  (){
-      console.log('Ciao sono ${this.nome}');
+    xhr.onload = function() {
+      callback(xhr.response);
     };
-  };
 
-  class Insegnante{
-  constructor(nome, cognome, eta, genere, interessi, materia){
-    super( nome, cognome, eta, genere, interessi);
-
-    this.materia = materia;
+    xhr.send();
   }
 
-  get materia(){
-    return this._materia;
+  function displayImage(blob){
+    let objectURL = URL.createObjectURL(blob);
+
+    let image = document.createElement('img');
+    image.src = objectURL;
+    document.body.appendChild(image);
   }
 
-  set materia(nuovaMateria){
-    this._materia = nuovaMateria;
-  }
-
-  riprendiAlunno(nomeAlunno){
-    console.log(`${nomeAlunno} non si mangia in classe`);
-  }
-}  
-
-  const insegnante = new Insegnante('Anna', 'Blu', 32,'Femmina', ['Cinema'], 'Storia');
-  console.log(insegnante.materia);
-  insegnante.materia();
-  console.log(insegnante.materia);
+  loadAsset('https://ak.picdn.net/shutterstock/videos/11773709/thumb/10.jpg', 'blob', displayImage);
 
 
 </script>
